@@ -1,19 +1,6 @@
 'use client';
-import React, {
-	createContext,
-	useContext,
-	ReactNode,
-	useState,
-	useCallback,
-	useEffect,
-} from 'react';
-import {
-	ThemeProvider as MuiThemeProvider,
-	createTheme,
-	Theme,
-	CssBaseline,
-	ThemeOptions,
-} from '@mui/material';
+import React, { createContext, useContext, ReactNode, useState, useCallback, useEffect } from 'react';
+import { ThemeProvider as MuiThemeProvider, createTheme, Theme, CssBaseline, ThemeOptions } from '@mui/material';
 
 interface ThemeContextProps {
 	theme: ThemeOptions;
@@ -31,36 +18,27 @@ export const ThemeProviderWrapper: React.FC<ThemeProviderProps> = ({ children })
 
 	useEffect(() => {
 		const savedTheme = localStorage.getItem('theme');
-		if (savedTheme) setThemeType(savedTheme === 'light' ? 'light' : 'dark');
+		if (savedTheme === 'dark') setThemeType('dark');
 	}, []);
 
 	const toggleTheme = useCallback(() => {
 		setThemeType((prevTheme) => {
-			localStorage.setItem('theme', prevTheme === 'light' ? 'dark' : 'light');
-			return prevTheme === 'light' ? 'dark' : 'light';
+			const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+			localStorage.setItem('theme', newTheme);
+			return newTheme;
 		});
 	}, []);
 
 	const theme: Theme = createTheme({
 		palette: {
 			mode: themeType,
-			background: {
-				default: themeType === 'light' ? '#F0F0F0' : '#121212',
-				paper: themeType === 'light' ? '#FFFFFF' : '#1E1E1E',
-			},
-			text: {
-				primary: themeType === 'light' ? '#333333' : '#FFFFFF',
-				secondary: themeType === 'light' ? '#555555' : '#CCCCCC',
-			},
 		},
 	});
 
 	return (
 		<MuiThemeProvider theme={theme}>
 			<CssBaseline />
-			<ThemeContext.Provider value={{ theme: theme, toggleTheme }}>
-				{children}
-			</ThemeContext.Provider>
+			<ThemeContext.Provider value={{ theme: theme, toggleTheme }}>{children}</ThemeContext.Provider>
 		</MuiThemeProvider>
 	);
 };

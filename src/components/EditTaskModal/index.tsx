@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TaskForm from '@/components/TaskForm';
+import { TasksDispatchContext } from '@/providers/tasks';
+import { Task } from '@/lib/types';
 
 const style = {
 	position: 'absolute',
@@ -18,21 +20,27 @@ const style = {
 interface EditTaskModalProps {
 	open: boolean;
 	onClose: () => void;
-	onEdit: (newText: string) => void;
-	taskId: string;
-	taskText: string;
+	task: Task;
 }
 
-const EditTaskModal: React.FC<EditTaskModalProps> = ({ open, onClose, onEdit, taskText }) => {
+const EditTaskModal: React.FC<EditTaskModalProps> = ({ open, onClose, task }) => {
+	const dispatch = useContext(TasksDispatchContext);
+
+	// edit task handler
 	const onSubmit = (newText: string) => {
-		onEdit(newText);
+		dispatch({
+			type: 'changed',
+			payload: {
+				task: { ...task, text: newText },
+			},
+		});
 		onClose();
 	};
 
 	return (
 		<Modal open={open} onClose={onClose}>
 			<Box sx={style}>
-				<TaskForm onSubmit={onSubmit} btnText="Edit Task" currentText={taskText} />
+				<TaskForm onSubmit={onSubmit} btnText="Edit Task" currentText={task?.text} />
 			</Box>
 		</Modal>
 	);
