@@ -6,7 +6,7 @@ import TaskForm from '@/components/TaskForm';
 import TodoHeader from '@/components/TodoHeader';
 import { useTheme, useDispatch, useTasks } from '@/lib/hooks';
 
-// the main component, it wraps all of the todo pieces
+// "Todo" is the main component, it wraps all of the todo pieces
 const Todo: React.FC = () => {
 	const tasks = useTasks();
 	const dispatch = useDispatch();

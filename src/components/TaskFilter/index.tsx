@@ -12,6 +12,7 @@ interface TaskListProps {
 	setFilter: (arg0: 'all' | 'completed' | 'active') => void;
 }
 
+// TaskFilter allows to filter the tasks based on completion status
 const TaskFilter: React.FC<TaskListProps> = ({ filter, setFilter }) => {
 	const handleChange = (event: SelectChangeEvent) => {
 		setFilter(event.target.value as 'all' | 'completed' | 'active');

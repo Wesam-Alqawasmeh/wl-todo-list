@@ -23,6 +23,7 @@ interface EditTaskModalProps {
 	task: Task;
 }
 
+// EditTaskModal renders the edit form modal, and holds the updating task functionality
 const EditTaskModal: React.FC<EditTaskModalProps> = ({ open, onClose, task }) => {
 	const dispatch = useDispatch();
 
