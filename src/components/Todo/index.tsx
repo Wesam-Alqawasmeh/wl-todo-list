@@ -1,16 +1,15 @@
 'use client';
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TaskList from '@/components/TaskList';
 import TaskForm from '@/components/TaskForm';
 import TodoHeader from '@/components/TodoHeader';
-import { useTheme } from '@/lib/hooks';
-import { TasksContext, TasksDispatchContext } from '@/providers/tasks';
+import { useTheme, useDispatch, useTasks } from '@/lib/hooks';
 
 // the main component, it wraps all of the todo pieces
 const Todo: React.FC = () => {
-	const tasks = useContext(TasksContext);
-	const dispatch = useContext(TasksDispatchContext);
+	const tasks = useTasks();
+	const dispatch = useDispatch();
 
 	const { theme } = useTheme();
 
