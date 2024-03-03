@@ -11,6 +11,7 @@ interface TaskFormProps {
 	currentText?: string | undefined;
 }
 
+// TaskForm is a shared form that could be used for multiple actions, based on the passed onSubmit handler
 const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, btnText, currentText }) => {
 	const [text, setText] = useState(currentText || '');
 
@@ -27,13 +28,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, btnText, currentText }) =
 			<form onSubmit={handleSubmit}>
 				<Grid container spacing={2} alignItems="center">
 					<Grid item xs={9}>
-						<TextField
-							fullWidth
-							label="Task"
-							variant="outlined"
-							value={text}
-							onChange={(e) => setText(e.target.value)}
-						/>
+						<TextField fullWidth label="Task" variant="outlined" value={text} onChange={(e) => setText(e.target.value)} />
 					</Grid>
 					<Grid item xs={3}>
 						<Button variant="contained" type="submit" fullWidth>

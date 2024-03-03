@@ -13,6 +13,7 @@ interface ThemeProviderProps {
 	children: ReactNode;
 }
 
+// ThemeProviderWrapper provide the children the access to the current theme, as well as theme toggling functionality
 export const ThemeProviderWrapper: React.FC<ThemeProviderProps> = ({ children }) => {
 	const [themeType, setThemeType] = useState<'light' | 'dark'>('light');
 

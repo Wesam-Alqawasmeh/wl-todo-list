@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import { useTheme } from '@/lib/hooks';
 import { TOGGLE_BTN_TEXT, TODO_BOX_HEADLINE } from './constants';
 
-// holds the headline and theme toggling button
+// "TodoHeader" holds the headline and theme toggling functionality
 const TodoHeader: React.FC = () => {
 	const { toggleTheme } = useTheme();
 
