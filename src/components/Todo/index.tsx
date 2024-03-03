@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useContext } from 'react';
-import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import TaskList from '@/components/TaskList';
 import TaskForm from '@/components/TaskForm';
@@ -38,28 +37,18 @@ const Todo: React.FC = () => {
 	};
 
 	return (
-		<Container
-			maxWidth="md"
+		<Box
+			boxShadow={3}
+			p={4}
 			style={{
-				height: '100vh',
-				display: 'flex',
-				flexDirection: 'column',
-				justifyContent: 'center',
+				backgroundColor: theme?.palette?.mode === 'light' ? '#fff' : '#000',
+				borderRadius: '8px',
 			}}
 		>
-			<Box
-				boxShadow={3}
-				p={4}
-				style={{
-					backgroundColor: theme?.palette?.mode === 'light' ? '#fff' : '#000',
-					borderRadius: '8px',
-				}}
-			>
-				<TodoHeader />
-				<TaskForm onSubmit={addTask} btnText={'Add Task'} />
-				<TaskList tasks={tasks} />
-			</Box>
-		</Container>
+			<TodoHeader />
+			<TaskForm onSubmit={addTask} btnText={'Add Task'} />
+			<TaskList tasks={tasks} />
+		</Box>
 	);
 };
 

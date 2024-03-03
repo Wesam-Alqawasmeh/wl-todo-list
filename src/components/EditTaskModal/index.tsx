@@ -34,6 +34,7 @@ const EditTaskModal: React.FC<EditTaskModalProps> = ({ open, onClose, task }) =>
 				task: { ...task, text: newText },
 			},
 		});
+		// close the modal after updating the task
 		onClose();
 	};
 

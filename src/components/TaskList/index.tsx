@@ -20,7 +20,9 @@ const TaskList: React.FC<TaskListProps> = ({ tasks }) => {
 			<TaskFilter filter={filter} setFilter={setFilter} />
 			<List>
 				{tasks.length ? (
-					tasks?.filter?.((task) => filter === 'all' || (filter === 'completed' && task.completed) || (filter === 'active' && !task.completed))?.map?.((task) => <TaskItem key={task.id} task={task} />)
+					tasks
+						?.filter?.((task) => filter === 'all' || (filter === 'completed' && task.completed) || (filter === 'active' && !task.completed))
+						?.map?.((task) => <TaskItem key={task.id} task={task} />)
 				) : (
 					<Typography variant="body1" gutterBottom>
 						{TASKS_LIST_FALLBACK}
