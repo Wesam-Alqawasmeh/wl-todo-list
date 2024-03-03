@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext, ReactNode, useState, useCallback, useEffect } from 'react';
+import React, { createContext, ReactNode, useState, useCallback, useEffect } from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme, Theme, CssBaseline, ThemeOptions } from '@mui/material';
 
 interface ThemeContextProps {

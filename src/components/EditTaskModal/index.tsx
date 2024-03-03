@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TaskForm from '@/components/TaskForm';
-import { TasksDispatchContext } from '@/providers/tasks';
 import { Task } from '@/lib/types';
+import { useDispatch } from '@/lib/hooks';
 
 const style = {
 	position: 'absolute',
@@ -24,7 +24,7 @@ interface EditTaskModalProps {
 }
 
 const EditTaskModal: React.FC<EditTaskModalProps> = ({ open, onClose, task }) => {
-	const dispatch = useContext(TasksDispatchContext);
+	const dispatch = useDispatch();
 
 	// edit task handler
 	const onSubmit = (newText: string) => {

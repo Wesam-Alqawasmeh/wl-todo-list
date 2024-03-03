@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
@@ -8,8 +8,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
 import EditTaskModal from '@/components/EditTaskModal';
-import { TasksDispatchContext } from '@/providers/tasks';
 import { Task } from '@/lib/types';
+import { useDispatch } from '@/lib/hooks';
 
 interface TaskItemProps {
 	task: Task;
@@ -17,7 +17,7 @@ interface TaskItemProps {
 
 const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
 	const [open, setOpen] = useState(false);
-	const dispatch = useContext(TasksDispatchContext);
+	const dispatch = useDispatch();
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
