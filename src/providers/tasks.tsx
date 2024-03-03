@@ -30,14 +30,17 @@ const tasksReducer: Reducer<Task[], TasksActionType> = (tasks: Task[], action: T
 
 type TasksDispatch = Dispatch<TasksActionType>;
 
+// initiate tasks, and dispatch contexts
 export const TasksDispatchContext = createContext<TasksDispatch>(() => {});
 export const TasksContext = createContext([] as Task[]);
 
-interface TasksProviderProps {
+interface TasksProviderWrapperProps {
 	children: ReactNode;
 }
 
-const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
+// TasksProviderWrapper will provide the children with the tasks array, and dispatch function.
+// So they could be used whenever they are deep in the tree
+const TasksProviderWrapper: React.FC<TasksProviderWrapperProps> = ({ children }) => {
 	const [tasks, dispatch] = useReducer(tasksReducer, []);
 	return (
 		<TasksContext.Provider value={tasks}>
@@ -46,4 +49,4 @@ const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
 	);
 };
 
-export default TasksProvider;
+export default TasksProviderWrapper;

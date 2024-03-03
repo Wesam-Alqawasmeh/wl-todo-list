@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import { ThemeProviderWrapper } from '@/providers/theme';
+import TasksProviderWrapper from '@/providers/tasks';
+import Container from '@/components/Container';
 
 export const metadata: Metadata = {
 	title: 'WL Todo App',
@@ -11,8 +14,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body>{children}</body>
-		</html>
+		<TasksProviderWrapper>
+			<ThemeProviderWrapper>
+				<html lang="en">
+					<body>
+						<Container>{children}</Container>
+					</body>
+				</html>
+			</ThemeProviderWrapper>
+		</TasksProviderWrapper>
 	);
 }
